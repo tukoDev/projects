@@ -3,6 +3,10 @@
 #include <unistd.h>
 #include <string.h>
 int bakiye=1000;
+void flush_stdin() {
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF) { }
+}
 void login(){
     int pass;
     char name[100];
@@ -10,8 +14,10 @@ void login(){
     do{
         printf("Kullanici adinizi giriniz[User]:");
         scanf("%s",name);
+        flush_stdin();
         printf("Sifrenizi giriniz[1234]:");
         scanf("%d",&pass);
+        flush_stdin();
         printf("Lutfen bekleyiniz...\n");
         sleep(2);
         system("cls");
@@ -20,7 +26,7 @@ void login(){
             printf("Kullanici adi veya sifre yanlis\nLUTFEN BIRKAC SANIYE SONRA TEKRAR DENEYINIZ...\n");
             sleep(3);
             system("CLS");
-    }
+        }
     }
     while(strcmp(name,"User")!=0 || pass!=1234);
     printf("Giris basarili\nyonlendiriliyorsunuz lutfen bekleyiniz...");
